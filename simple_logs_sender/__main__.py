@@ -28,7 +28,7 @@ async def main():
         logger.info('Simple logs sender starting')
         server, plugins = get_server_and_plugins(config, logger)
         await start_all(server, plugins, logger)
-    except KeyboardInterrupt:
+    except (KeyboardInterrupt, asyncio.CancelledError):
         pass
     except Exception:
         logger.exception('Failed to start simple logs sender')
