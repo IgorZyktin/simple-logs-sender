@@ -25,6 +25,10 @@ class Plugin(abc.ABC):
         self.tag = tag
         self.running = None
 
+    def __repr__(self) -> str:
+        """Вернуть текстовое представление."""
+        return f'Plugin<{self.name}>'
+
     async def start(self) -> None:
         """Подготовить плагин к работе."""
         self.running = True

@@ -158,6 +158,7 @@ def get_server_and_plugins(
 def get_plugins(config: cfg.Config, logger: logging.Logger) -> dict[str, list[base.Plugin]]:
     """Импортировать и вернуть все плагины."""
     plugins: dict[str, list[base.Plugin]] = defaultdict(list)
+    all_plugins: list[base.Plugin] = []
 
     for tag, plugin_names in config.plugins.items():
         for name in plugin_names:
@@ -172,6 +173,8 @@ def get_plugins(config: cfg.Config, logger: logging.Logger) -> dict[str, list[ba
                 plugins[plugin.tag].append(plugin)
             except Exception:
                 logger.exception('Failed to import plugin %r', name)
+
+    logger.info('Starting with plugins: %s', all_plugins)
 
     return plugins
 
