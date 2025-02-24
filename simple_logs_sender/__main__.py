@@ -162,7 +162,7 @@ def get_plugins(config: cfg.Config, logger: logging.Logger) -> dict[str, list[ba
 
     for tag, plugin_names in config.plugins.items():
         for name in plugin_names:
-            path = Path(config.plugins_path) / name.lower()
+            path = Path('.') / config.plugins_path / name.lower()
 
             if not path.exists() or path.name.startswith('_'):
                 continue
