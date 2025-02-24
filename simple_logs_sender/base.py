@@ -9,7 +9,8 @@ from simple_logs_sender import cfg
 class Payload(TypedDict):
     """Формат данных от сервера."""
 
-    registered_at: str
+    timestamp: str
+    hostname: str
     tag: str
     message: str
 

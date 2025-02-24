@@ -19,20 +19,18 @@ import ujson
 class BaseConfig:
     """Базовый класс сервера для наследования в плагинах."""
 
-    prefix: str = 'SLS_'
-
 
 T_co = TypeVar('T_co', bound=BaseConfig, covariant=True)
 
 
-def from_env(model_type: type[T_co]) -> T_co:
+def from_env(model_type: type[T_co], prefix: str = 'SLS__') -> T_co:
     """Собрать экземпляр из переменных окружения."""
     payload = {}
     for each_field in fields(model_type):
         if each_field.name.startswith('_'):
             continue
 
-        env_name = f'{model_type.prefix}{each_field.name}'.upper()
+        env_name = f'{prefix}{each_field.name}'.upper()
         default = None if each_field.default is MISSING else each_field.default
         value = os.environ.get(env_name, default)
 

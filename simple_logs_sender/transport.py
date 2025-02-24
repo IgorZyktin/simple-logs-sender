@@ -42,7 +42,7 @@ class TCPServer:
                     break
 
                 try:
-                    payload = ujson.loads(raw_data)
+                    payload = base.Payload(**ujson.loads(raw_data))
                 except (TypeError, ValueError, json.JSONDecodeError):
                     self.logger.error('Failed to parse JSON: %r', raw_data)
                     continue

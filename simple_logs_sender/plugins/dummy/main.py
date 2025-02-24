@@ -14,7 +14,7 @@ class DummyPlugin(base.Plugin):
 
     async def start(self) -> None:
         """Подготовить плагин к работе."""
-        LOG.info('Dummy started')
+        LOG.info('Dummy plugin started')
 
     async def process(self, payload: base.Payload) -> None:
         """Обработать запрос."""
@@ -22,4 +22,4 @@ class DummyPlugin(base.Plugin):
 
     async def stop(self) -> None:
         """Бережно остановить плагин."""
-        LOG.info('Dummy stopped')
+        LOG.info('Dummy plugin stopped')
