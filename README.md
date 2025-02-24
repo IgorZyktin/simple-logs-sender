@@ -153,7 +153,7 @@ Wants=network.target
 
 [Service]
 User=simple_logs_sender
-WorkingDirectory=/home/simple_logs_sender/simple-logs-sender/
+WorkingDirectory=/home/simple_logs_sender/simple-logs-sender/simple_logs_sender
 ExecStart=/home/simple_logs_sender/simple-logs-sender/.venv/bin/python3 -m simple_logs_sender
 EnvironmentFile=/etc/simple_logs_sender/env
 CPUAccounting=true
