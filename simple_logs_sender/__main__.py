@@ -158,26 +158,28 @@ def get_server_and_plugins(
 def get_plugins(config: cfg.Config, logger: logging.Logger) -> dict[str, list[base.Plugin]]:
     """Импортировать и вернуть все плагины."""
     plugins: dict[str, list[base.Plugin]] = defaultdict(list)
-    all_plugins: list[base.Plugin] = []
+    all_plugins: set[str] = set()
     local = Path('.') / config.plugins_path
 
     logger.info('Getting plugins from %s', local.absolute())
 
     for tag, plugin_names in config.plugins.items():
         for name in plugin_names:
-            path = Path('.') / config.plugins_path / name.lower()
+            path = local / name.lower()
 
             if not path.exists() or path.name.startswith('_'):
                 continue
 
             try:
-                module = importlib.import_module(f'simple_logs_sender.plugins.{name.lower()}')
+                module = importlib.import_module(f'plugins.{name.lower()}')
                 plugin = module.get_plugin(config, tag)
                 plugins[plugin.tag].append(plugin)
             except Exception:
                 logger.exception('Failed to import plugin %r', name)
+            else:
+                all_plugins.add(plugin.name)
 
-    logger.info('Starting with plugins: %s', all_plugins)
+    logger.info('Starting with plugins: %s', sorted(all_plugins))
 
     return plugins
 
