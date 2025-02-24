@@ -3,7 +3,6 @@
 import logging
 
 from simple_logs_sender import base
-from simple_logs_sender import cfg
 
 LOG = logging.getLogger(__name__)
 
@@ -24,8 +23,3 @@ class DummyPlugin(base.Plugin):
     async def stop(self) -> None:
         """Бережно остановить плагин."""
         LOG.info('Dummy stopped')
-
-
-def get_plugin(global_config: cfg.Config, tag: str) -> DummyPlugin:
-    """Вернуть экземпляр плагина."""
-    return DummyPlugin(global_config, tag)
