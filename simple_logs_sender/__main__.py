@@ -159,16 +159,19 @@ def get_plugins(config: cfg.Config, logger: logging.Logger) -> dict[str, list[ba
     """Импортировать и вернуть все плагины."""
     plugins: dict[str, list[base.Plugin]] = defaultdict(list)
     all_plugins: list[base.Plugin] = []
+    local = Path('.') / config.plugins_path
+
+    logger.info('Getting plugins from %s', local)
 
     for tag, plugin_names in config.plugins.items():
         for name in plugin_names:
-            path = Path('.') / config.plugins_path / name.lower()
+            path = local / name.lower()
 
             if not path.exists() or path.name.startswith('_'):
                 continue
 
             try:
-                module = importlib.import_module(f'simple_logs_sender.plugins.{name.lower()}')
+                module = importlib.import_module(f'plugins.{name.lower()}')
                 plugin = module.get_plugin(config, tag)
                 plugins[plugin.tag].append(plugin)
             except Exception:
