@@ -159,7 +159,7 @@ def get_plugins(config: cfg.Config, logger: logging.Logger) -> dict[str, list[ba
     """Импортировать и вернуть все плагины."""
     plugins: dict[str, list[base.Plugin]] = defaultdict(list)
     all_plugins: set[str] = set()
-    local = Path('.') / config.plugins_path
+    local = Path('simple_logs_sender') / config.plugins_path
 
     logger.info('Getting plugins from %s', local.absolute())
 
@@ -171,7 +171,7 @@ def get_plugins(config: cfg.Config, logger: logging.Logger) -> dict[str, list[ba
                 continue
 
             try:
-                module = importlib.import_module(f'plugins.{name.lower()}')
+                module = importlib.import_module(f'simple_logs_sender.plugins.{name.lower()}')
                 plugin = module.get_plugin(config, tag)
                 plugins[plugin.tag].append(plugin)
             except Exception:
