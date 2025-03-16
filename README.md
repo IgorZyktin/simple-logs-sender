@@ -33,7 +33,7 @@ pip3 install .
 Находясь там же, в каталоге `simple-logs-sender`.
 
 ```shell
-export SLS_PLUGINS='{"test":"dummy"}'
+export SLS__PLUGINS='{"test":"dummy"}'
 python3 -m simple_logs_sender
 ```
 
@@ -137,7 +137,7 @@ sudo vim /etc/simple_logs_sender/env
 Содержимое настроек:
 
 ```
-SLS_PLUGINS={"sls-nginx": ["dummy"]}
+SLS__PLUGINS={"sls-nginx": ["dummy"]}
 ```
 
 ```shell
