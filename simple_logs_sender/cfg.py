@@ -64,7 +64,6 @@ class Config(BaseConfig):
 
     host: str = '127.0.0.1'
     port: int = 5999
-    chunk_size: int = 2048
     log_file: str = ''
     log_format: str = '%(asctime)s - %(levelname)s - %(message)s'
     verbose: bool = True

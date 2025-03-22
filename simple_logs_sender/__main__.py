@@ -147,7 +147,6 @@ def get_server_and_plugins(
     server = transport.TCPServer(
         host=config.host,
         port=config.port,
-        chunk_size=config.chunk_size,
         plugins=plugins,
         logger=logger,
         verbose=config.verbose,

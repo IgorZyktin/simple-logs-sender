@@ -17,7 +17,6 @@ class TCPServer:
         self,
         host: str,
         port: int,
-        chunk_size: int,
         plugins: dict[str, list[base.Plugin]],
         logger: logging.Logger,
         verbose: bool,
@@ -25,7 +24,6 @@ class TCPServer:
         """Инициализировать экземпляр."""
         self.host = host
         self.port = port
-        self.chunk_size = chunk_size
         self.plugins = plugins
         self.server = None
         self.logger = logger
@@ -36,9 +34,7 @@ class TCPServer:
         """Начать обрабатывать входящее соединение."""
         while True:
             try:
-                # по всей видимости rsyslog не оповещает о конце передачи,
-                # вариант <читать в цикле, пока не получим b''> не работает
-                raw_data = await reader.read(self.chunk_size)
+                raw_data = await reader.readline()
 
                 if not raw_data:
                     break
