@@ -20,6 +20,7 @@ class TCPServer:
         chunk_size: int,
         plugins: dict[str, list[base.Plugin]],
         logger: logging.Logger,
+        verbose: bool,
     ) -> None:
         """Инициализировать экземпляр."""
         self.host = host
@@ -28,6 +29,7 @@ class TCPServer:
         self.plugins = plugins
         self.server = None
         self.logger = logger
+        self.verbose = verbose
         self._tasks: set = set()
 
     async def handle_client(self, reader, writer):
@@ -52,6 +54,9 @@ class TCPServer:
                 if tag is None:
                     self.logger.error('Incorrect payload structure: %r', raw_data)
                     continue
+
+                if self.verbose:
+                    self.logger.info('Got message from %(hostname)s with tag %(tag)s', payload)
 
                 actual_plugins = self.plugins.get(tag)
 

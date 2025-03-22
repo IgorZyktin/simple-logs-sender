@@ -67,6 +67,7 @@ class Config(BaseConfig):
     chunk_size: int = 2048
     log_file: str = ''
     log_format: str = '%(asctime)s - %(levelname)s - %(message)s'
+    verbose: bool = True
 
     plugins_path: str = './plugins'
     plugins: Annotated[dict[str, list[str]], ujson.loads] = field(default_factory=dict)

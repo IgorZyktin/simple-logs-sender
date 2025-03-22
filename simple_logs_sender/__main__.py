@@ -150,6 +150,7 @@ def get_server_and_plugins(
         chunk_size=config.chunk_size,
         plugins=plugins,
         logger=logger,
+        verbose=config.verbose,
     )
 
     return server, plugins
