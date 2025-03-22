@@ -114,9 +114,17 @@ class NginxToPostgresqlPlugin(base.Plugin):
             'http_referrer': maybe_str(message['http_referrer']),
         }
 
-        async with self._engine.begin() as conn:
-            stmt = sa.insert(Logs).values(**values)
-            await conn.execute(stmt)
+        try:
+            async with self._engine.begin() as conn:
+                stmt = sa.insert(Logs).values(**values)
+                await conn.execute(stmt)
+        except TimeoutError as exc:
+            LOG.exception(
+                'Failed to save record to the database, '
+                'error: %s, record: %s',
+                exc,
+                values,
+            )
 
     async def stop(self) -> None:
         """Бережно остановить плагин."""
