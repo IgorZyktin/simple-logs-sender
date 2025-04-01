@@ -18,7 +18,7 @@ from simple_logs_sender import transport
 
 async def main():
     """Точка входа."""
-    config = pu.from_env(cfg.Config, env_prefix='SLS__')
+    config = pu.from_env(cfg.Config, env_prefix='SLS')
     logger = get_logger(config)
 
     add_signal_handlers(logger)
