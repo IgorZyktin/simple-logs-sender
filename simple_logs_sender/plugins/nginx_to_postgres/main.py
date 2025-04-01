@@ -3,10 +3,10 @@
 import logging
 
 import iso8601
-import ujson
+import sqlalchemy as sa
 from sqlalchemy.ext.asyncio import create_async_engine
 from sqlalchemy.orm import declarative_base
-import sqlalchemy as sa
+import ujson
 
 from simple_logs_sender import base
 from simple_logs_sender import cfg
@@ -120,9 +120,8 @@ class NginxToPostgresqlPlugin(base.Plugin):
                 await conn.execute(stmt)
         except TimeoutError as exc:
             LOG.exception(
-                'Failed to save record to the database, '
-                'error: %s, record: %s',
-                exc,
+                'Failed to save record to the database, error: %s, record: %s',
+                exc,  # noqa: TRY401
                 values,
             )
 

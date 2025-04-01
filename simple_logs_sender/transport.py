@@ -19,6 +19,7 @@ class TCPServer:
         port: int,
         plugins: dict[str, list[base.Plugin]],
         logger: logging.Logger,
+        *,
         verbose: bool,
     ) -> None:
         """Инициализировать экземпляр."""
