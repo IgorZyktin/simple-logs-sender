@@ -9,6 +9,8 @@ from pathlib import Path
 import signal
 import sys
 
+import python_utilz as pu
+
 from simple_logs_sender import base
 from simple_logs_sender import cfg
 from simple_logs_sender import transport
@@ -16,7 +18,7 @@ from simple_logs_sender import transport
 
 async def main():
     """Точка входа."""
-    config = cfg.from_env(cfg.Config)
+    config = pu.from_env(cfg.Config, env_prefix='SLS__')
     logger = get_logger(config)
 
     add_signal_handlers(logger)

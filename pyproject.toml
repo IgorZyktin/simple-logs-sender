@@ -1,6 +1,6 @@
 [project]
 name = "simple-logs-sender"
-version = "0.1.0"
+version = "0.1.1"
 description = "Simple server that receives logs from rsyslog and sends them to other applications"
 authors = [
     { name = "Igor Zyktin", email = "nicord@yandex.ru" },
@@ -9,6 +9,8 @@ readme = "README.md"
 license = { text = "MIT License" }
 requires-python = ">=3.10"
 dependencies = [
+    "python-utilz>=0.1.2",
+    "ruff>=0.11.2",
     "ujson>=5.10.0",
 ]
 
