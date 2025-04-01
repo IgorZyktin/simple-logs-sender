@@ -2,11 +2,11 @@
 
 from dataclasses import dataclass
 
-from simple_logs_sender.cfg import BaseConfig
+import python_utilz as pu
 
 
 @dataclass
-class PostgresqlConfig(BaseConfig):
+class PostgresqlConfig(pu.BaseConfig):
     """Конфигурация плагина."""
 
     db_url: str
