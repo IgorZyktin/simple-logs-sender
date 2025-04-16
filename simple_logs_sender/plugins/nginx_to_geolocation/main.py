@@ -24,7 +24,7 @@ class IpGeolocation(Base):
 
     __tablename__ = 'ip_geolocation'
 
-    ip = sa.Column(sa.String(15), nullable=False)
+    ip = sa.Column(sa.String(15), nullable=False, index=True, primary_key=True)
     updated_at = sa.Column(sa.DateTime(timezone=True), nullable=False)
     country = sa.Column(sa.String(255))
     country_code = sa.Column(sa.String(255))
