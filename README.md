@@ -28,6 +28,12 @@ source .venv/bin/activate
 pip3 install .
 ```
 
+Если будете использовать плагины, их зависимости тоже нужно установить.
+
+```shell
+pip3 install -r simple_logs_sender/plugins/<plugin>/requirements.txt
+```
+
 ### Тестовый запуск
 
 Находясь там же, в каталоге `simple-logs-sender`.
@@ -138,6 +144,7 @@ sudo vim /etc/simple_logs_sender/env
 
 ```
 SLS__PLUGINS={"sls-nginx": ["dummy"]}
+SLS__PLUGINS_PATH="/home/simple_logs_sender/simple-logs-sender/simple_logs_sender/plugins"
 ```
 
 ```shell
