@@ -2,11 +2,11 @@
 
 from dataclasses import dataclass
 
-import python_utilz as pu
+import nano_settings as ns
 
 
 @dataclass
-class PostgresqlConfig(pu.BaseConfig):
+class PostgresqlConfig(ns.BaseConfig):
     """Конфигурация плагина."""
 
     db_url: str

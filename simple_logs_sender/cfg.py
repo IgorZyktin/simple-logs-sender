@@ -4,12 +4,12 @@ from dataclasses import dataclass
 from dataclasses import field
 from typing import Annotated
 
-import python_utilz as pu
+import nano_settings as ns
 import ujson
 
 
 @dataclass
-class Config(pu.BaseConfig):
+class Config(ns.BaseConfig):
     """Конфигурация приложения.
 
     Пример оформления настройки плагинов: {"tag1": ["plugin1", "plugin2"]}
