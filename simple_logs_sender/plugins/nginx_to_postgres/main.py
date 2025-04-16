@@ -1,6 +1,7 @@
 """Плагин для пересылки логов в PostgreSQL."""
 
 import logging
+from typing import Any
 
 import iso8601
 import sqlalchemy as sa
@@ -64,9 +65,9 @@ class NginxToPostgresqlPlugin(base.Plugin):
             pool_pre_ping=True,
         )
 
-    async def start(self) -> None:
+    async def start(self, global_variables: dict[str, Any]) -> None:
         """Подготовить плагин к работе."""
-        await super().start()
+        await super().start(global_variables)
 
         async with self._engine.begin() as conn:
             await conn.run_sync(Base.metadata.create_all)
