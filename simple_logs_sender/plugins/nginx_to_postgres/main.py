@@ -67,6 +67,7 @@ class NginxToPostgresqlPlugin(base.Plugin):
 
     async def start(self, global_variables: dict[str, Any]) -> None:
         """Подготовить плагин к работе."""
+        global_variables['engine'] = self._engine
         await super().start(global_variables)
 
         async with self._engine.begin() as conn:
