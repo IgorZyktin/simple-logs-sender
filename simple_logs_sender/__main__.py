@@ -8,12 +8,15 @@ import os
 from pathlib import Path
 import signal
 import sys
+from typing import Any
 
 import nano_settings as ns
 
 from simple_logs_sender import base
 from simple_logs_sender import cfg
 from simple_logs_sender import transport
+
+GLOBAL_VARIABLES: dict[str, Any] = {}
 
 
 async def main():
@@ -55,7 +58,7 @@ async def start_all(
                 continue
 
             try:
-                await plugin.start()
+                await plugin.start(GLOBAL_VARIABLES)
             except Exception:
                 logger.exception('Failed to start plugin %r', plugin.name)
             finally:

@@ -1,6 +1,7 @@
 """Описание базовых инструментов."""
 
 import abc
+from typing import Any
 from typing import TypedDict
 
 from simple_logs_sender import cfg
@@ -30,7 +31,7 @@ class Plugin(abc.ABC):
         """Вернуть текстовое представление."""
         return f'Plugin<{self.name}>'
 
-    async def start(self) -> None:
+    async def start(self, global_variables: dict[str, Any]) -> None:
         """Подготовить плагин к работе."""
         self.running = True
 

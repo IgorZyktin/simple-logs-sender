@@ -1,6 +1,7 @@
 """Плагин-пустышка, подходит для проверки работы."""
 
 import logging
+from typing import Any
 
 from simple_logs_sender import base
 
@@ -12,7 +13,7 @@ class DummyPlugin(base.Plugin):
 
     name: str = 'dummy'
 
-    async def start(self) -> None:
+    async def start(self, global_variables: dict[str, Any]) -> None:
         """Подготовить плагин к работе."""
         LOG.info('Dummy plugin started')
 
